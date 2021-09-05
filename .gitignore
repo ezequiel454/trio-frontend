@@ -1,0 +1,10 @@
+# common
+node_modules
+.env
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
