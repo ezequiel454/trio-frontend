@@ -11,7 +11,7 @@ import {
 	SyncMessage
 } from '@/styles/pages/home'
 
-const home = () => {
+const Home = () => {
 	const [isSync, setIsSync] = useState<boolean>(false)
 	const [messageSendgrid, setMessageSendgrid] = useState<string>(
 		'Sync Contacts To Sendgrid'
@@ -28,6 +28,7 @@ const home = () => {
 		setIsSync(true)
 		try {
 			const { data: contacts } = await api.get(`sync-contacts/${provider}`)
+			if (!contacts) throw new Error('Value return undefined')
 			setIsSync(false)
 			isFirebase
 				? setMessageFirebase(`${contacts} contacts were synced! on firebase`)
@@ -45,18 +46,28 @@ const home = () => {
 		<>
 			<BlobContainer>
 				<ButtonContainer>
-					<ElipseContainer onClick={() => PushSyncButton('sendgrid')}>
+					<ElipseContainer
+						onClick={() => PushSyncButton('sendgrid')}
+						data-testid="button-sendgrid"
+					>
 						<Arrow color="black" orientation="left" />
 						<Arrow color="orange" orientation="right" />
 					</ElipseContainer>
-					<SyncMessage>{messageSendgrid}</SyncMessage>
+					<SyncMessage data-testid="message-sendgrid">
+						{messageSendgrid}
+					</SyncMessage>
 				</ButtonContainer>
 				<ButtonContainer>
-					<ElipseContainer onClick={() => PushSyncButton('firebase')}>
+					<ElipseContainer
+						onClick={() => PushSyncButton('firebase')}
+						data-testid="button-firebase"
+					>
 						<Arrow color="black" orientation="left" />
 						<Arrow color="orange" orientation="right" />
 					</ElipseContainer>
-					<SyncMessage>{messageFirebase}</SyncMessage>
+					<SyncMessage data-testid="message-firebase">
+						{messageFirebase}
+					</SyncMessage>
 				</ButtonContainer>
 			</BlobContainer>
 			<LoaderContainer isLoading={isSync}>
@@ -74,6 +85,6 @@ const home = () => {
 	)
 }
 
-export default home
+export default Home
 
 const Loader = dynamic(() => import('react-loader-spinner'), { ssr: false })
