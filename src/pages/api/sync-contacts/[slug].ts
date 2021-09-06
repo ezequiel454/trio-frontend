@@ -15,7 +15,7 @@ const syncContacts = async (req: NextApiRequest, res: NextApiResponse) => {
 	const { data: syncResponse }: SyncResponseDto = await axiosConn.get(
 		`sync/${slug}`
 	)
-	res.json(syncResponse['data'].contacts)
+	res.json(syncResponse.data.contacts)
 }
 
 export default syncContacts

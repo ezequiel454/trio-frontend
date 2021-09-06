@@ -1,5 +1,7 @@
 export interface SyncResponseDto {
 	data: {
-		contacts: number
+		data: {
+			contacts: number
+		}
 	}
 }
