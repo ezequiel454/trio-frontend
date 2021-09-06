@@ -24,7 +24,7 @@ Here's a brief overview of our technology stack:
 
 - **[Next](https://next.me/)** Used to increase the security
 
-- **[Heroku](https://heroku.com)** as a service to deploy
+- **[Heroku](https://heroku.com)** As a service to deploy
 
 ## Developing
 
